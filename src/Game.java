@@ -159,7 +159,6 @@ public class Game {
 					deal2.setFlopCards();
 					break;
 				case "turn":
-					System.out.println("here");
 					deal2.setBurnCard();
 					deal2.setTurnCard();
 					break;
