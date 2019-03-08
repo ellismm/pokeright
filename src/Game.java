@@ -43,7 +43,9 @@ public class Game {
 //		theDeck.shuffle();
 //		
 		//Creating players
-		String names[] = {"Anna", "Helina", "Josh", "Daniel", "Rebecca", "Dad", "Mom", "Myself", "Sandra", "Lizzie"};
+//		String names[] = {"Anna", "Helina", "Josh", "Daniel", "Rebecca", "Dad", "Mom", "Myself", "Sandra", "Lizzie"};
+		String names[] = {"Player1", "Player2", "Player3", "Player4", "Player5", "Player6", "Player7", "Player8", "Player9", "Player10"};
+
 //		String names[] = {"Anna", "Helina"};
 		
 		Dealer deal = new Dealer(names, 10);
@@ -162,6 +164,10 @@ public class Game {
 					deal2.setBurnCard();
 					deal2.setTurnCard();
 					break;
+				case "stats":
+					System.out.println("there are really no stats to get right now");
+					System.out.println("But this is where you'll get the option to determine for what hand you want"
+							+ " the stats for");
 				case "river":
 					deal2.setBurnCard();
 					deal2.setRiverCard();
@@ -195,6 +201,7 @@ public class Game {
 		System.out.println("flop: to see the first 3 cards");
 		System.out.println("turn: to see the fourth card");
 		System.out.println("river: to see the last card");
+		System.out.println("stats: to see the statistics for a desired");
 	}
 
 }

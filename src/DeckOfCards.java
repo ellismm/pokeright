@@ -12,10 +12,11 @@ import java.security.SecureRandom;
 import java.util.Scanner;
 
 public class DeckOfCards {
+	// Variable declaration
 	private Card[] deck;
 	private int currentCard;
 	
-	
+	// Initialization of the class
 	@SuppressWarnings("null")
 	public DeckOfCards() throws IOException {
 		//declare arrays with, image files, suits, and names
@@ -87,7 +88,6 @@ public class DeckOfCards {
 	/**
 	 * this method will print the deck of cards to the screen
 	 */
-	
 	public void displayDeck() {
 		for (Card card: deck) {
 			System.out.println(card);
@@ -135,7 +135,6 @@ public class DeckOfCards {
 	 * variable
 	 * @return the top Card on the deck
 	 */
-	
 	public Card dealCard() {
 		Card tempCard;
 		if (currentCard < deck.length) {
