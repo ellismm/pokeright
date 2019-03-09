@@ -37,6 +37,7 @@ public class Dealer  {//open the dealer class
 			new Player("empty"),
 			new Player("empty"),
 			new Player("empty")};
+//	private Player[] players2 = new Player[10] { new Player("empty")};
 	
 	//If not given user names then use these default names
 	private String[] defaultPlayers = {"Player1", "Player2", "Player3", "Player4", "Player5", "Player6", "Player7", "Player8", "Player9", "Player10"};
@@ -789,11 +790,12 @@ public class Dealer  {//open the dealer class
 	}
 	
 	
-	
+	// A method to sort a hand to determine if there is two pair
 	public Card[] sortTwoPair(Card[] uCards) { 
 		return sortTwoPairb(uCards, 0);
 	}
 	
+	// a helper function for sortTwoPair
 	private Card[] sortTwoPairb(Card[] uCards, int index) {
 		boolean paired = false;
 		if(index < 6) {
@@ -838,6 +840,7 @@ public class Dealer  {//open the dealer class
 		
 	}
 	
+	// A helper function for sortTwoPairb
 	private Card[] sortTwoPairc(Card[] uCards, int index) {
 		boolean paired = false;
 		if(index < 6) {
@@ -946,6 +949,7 @@ public class Dealer  {//open the dealer class
 		
 	}
 	
+	// A helper function for sorthreeKind2
 	public Card[] sortThreeKind2b(int found, Card[] uCards) {
 		Card temp = uCards[found];
 		uCards[found] = uCards[0];
@@ -1024,6 +1028,7 @@ public class Dealer  {//open the dealer class
 		}
 	}
 	
+	// Determine the highest three of a kind hand
 	public void getThreeKindWinners(Player[] winners, String hand) {
 		int i = 0;
 		while(i != playerCount && winners[i] != null) {
@@ -1076,6 +1081,7 @@ public class Dealer  {//open the dealer class
 		}
 	}
 	
+	// A method to compare three of a kind hands
 	public Player[] compareThreeKind(Player[] winners) {
 		Player[] officialWinners = new Player[playerCount];
 		Player player1 = winners[0];
@@ -1090,7 +1096,7 @@ public class Dealer  {//open the dealer class
 		return winners;
 	}
 	
-	
+	// helper function for comareThreeKind method
 	public Player[] compareThreeKindb(Player winner, Card[] win, int iPlayer, int start,Player[] winners, Player[] officialWinners) {
 
 		
@@ -1264,6 +1270,7 @@ public class Dealer  {//open the dealer class
 		}
 	}
 	
+	// Prints all the winners with same highest straight
 	public void getStraightWinners(Player[] winners, String hand) {
 		int i = 0;
 		while(i != playerCount && winners[i] != null) {
@@ -1423,6 +1430,7 @@ public class Dealer  {//open the dealer class
 		}
 	}
 	
+	// prints all the highest flush hands
 	public void getFlushWinners(Player[] winners, String hand) {
 		int i = 0;
 		while(i != playerCount && winners[i] != null) {
@@ -1469,7 +1477,8 @@ public class Dealer  {//open the dealer class
 		}
 		
 	}
-		
+	
+	// compares all flushes to determine the highest hand
 	public Player[] compareFlushWinners(Player[] winners) {
 		Player[] officialWinners = new Player[playerCount];
 		Player player1 = winners[0];
@@ -1482,7 +1491,7 @@ public class Dealer  {//open the dealer class
 		return winners;
 	}
 	
-	
+	// A helper function for the compareFlushWinners method
 	public Player[] compareFlushWinnersb(Player winner, Card[] win, int iPlayer, int start,Player[] winners, Player[] officialWinners) {
 		
 		if (iPlayer != playerCount && winners[iPlayer] == null) {
@@ -1570,27 +1579,27 @@ public class Dealer  {//open the dealer class
 	
 	
 	//a second method that sorts the cards for a full house hand
-		public Card[] sortFullHouse2(Card[] uCards) {
-			uCards = sortThreeKind(uCards);
-			boolean paired = false;
-			if( uCards[0].getFaceValue() == uCards[1].getFaceValue() && uCards[0].getFaceValue() == uCards[2].getFaceValue()) {
-				for(int i = 3; i < 6; i++ ) {
-					for(int j = i + 1; j < 7; j++) {
-						if(uCards[i].getFaceValue() == uCards[j].getFaceValue()) {
-							uCards = switchCards(uCards, i, 3);
-							uCards = switchCards(uCards, j, 4);
-							paired = true;
-						}
-					}
-					if(paired) {
-						break;
+	public Card[] sortFullHouse2(Card[] uCards) {
+		uCards = sortThreeKind(uCards);
+		boolean paired = false;
+		if( uCards[0].getFaceValue() == uCards[1].getFaceValue() && uCards[0].getFaceValue() == uCards[2].getFaceValue()) {
+			for(int i = 3; i < 6; i++ ) {
+				for(int j = i + 1; j < 7; j++) {
+					if(uCards[i].getFaceValue() == uCards[j].getFaceValue()) {
+						uCards = switchCards(uCards, i, 3);
+						uCards = switchCards(uCards, j, 4);
+						paired = true;
 					}
 				}
+				if(paired) {
+					break;
+				}
 			}
-			
-			return uCards;
 		}
-	
+		
+		return uCards;
+	}
+
 	
 	//Prints the winner(s) if  there is a full house hand
 	public void getFullHouseWinners(Player[] winners, String hand) {
@@ -1641,52 +1650,52 @@ public class Dealer  {//open the dealer class
 	}
 	
 	//Compare all full house hands and store the winner(s) in an array
-		public Player[] compareFullHouse(Player[] winners) {
-			Player[] officialWinners = new Player[playerCount];
-			Player player1 = winners[0];
-			officialWinners[0] = winners[0];
-			Player winner = player1;
-			Card[] win = getCards(player1);
-			win = sortFullHouse2(win);
-			
-			winners = compareFullHouseb(winner, win, 1, 0, winners, officialWinners);
-			return winners;
-		}
+	public Player[] compareFullHouse(Player[] winners) {
+		Player[] officialWinners = new Player[playerCount];
+		Player player1 = winners[0];
+		officialWinners[0] = winners[0];
+		Player winner = player1;
+		Card[] win = getCards(player1);
+		win = sortFullHouse2(win);
 		
-		//Recursive method to compareFourKind()
-		public Player[] compareFullHouseb(Player winner, Card[] win, int iPlayer, int start,Player[] winners, Player[] officialWinners) {
-			
-			if (iPlayer != playerCount && winners[iPlayer] == null) {
-				return officialWinners;
-			}
-			
-			else if(iPlayer != playerCount) {
-				Player player2 = winners[iPlayer];
-				Card[] card2 = getCards(player2);
-				card2 = sortFullHouse(card2);
-				int winning = compareHighTwoHands(win, card2);
-				if(winning == 1) {				
-					compareFullHouseb(winner, win, ++iPlayer, start, winners, officialWinners);
-				}
-				
-				else if (winning == 2) {
-					if(start > 0 ) {
-						for(int i = 0; i < playerCount; i++) {
-							officialWinners[i] = null;
-				
-						}
-					}
-					start = 0;
-					officialWinners[start] = winners[iPlayer];
-					compareFullHouseb(player2, card2, ++iPlayer, ++start, winners, officialWinners);
-				}
-				else if (winning == 3) {
-					officialWinners[start] = winners[iPlayer];
-					compareFullHouseb(winner, win, ++iPlayer, ++start, winners, officialWinners);
-				}
-			}
+		winners = compareFullHouseb(winner, win, 1, 0, winners, officialWinners);
+		return winners;
+	}
+		
+	//Recursive method to compareFourKind()
+	public Player[] compareFullHouseb(Player winner, Card[] win, int iPlayer, int start,Player[] winners, Player[] officialWinners) {
+		
+		if (iPlayer != playerCount && winners[iPlayer] == null) {
 			return officialWinners;
 		}
+		
+		else if(iPlayer != playerCount) {
+			Player player2 = winners[iPlayer];
+			Card[] card2 = getCards(player2);
+			card2 = sortFullHouse(card2);
+			int winning = compareHighTwoHands(win, card2);
+			if(winning == 1) {				
+				compareFullHouseb(winner, win, ++iPlayer, start, winners, officialWinners);
+			}
+			
+			else if (winning == 2) {
+				if(start > 0 ) {
+					for(int i = 0; i < playerCount; i++) {
+						officialWinners[i] = null;
+			
+					}
+				}
+				start = 0;
+				officialWinners[start] = winners[iPlayer];
+				compareFullHouseb(player2, card2, ++iPlayer, ++start, winners, officialWinners);
+			}
+			else if (winning == 3) {
+				officialWinners[start] = winners[iPlayer];
+				compareFullHouseb(winner, win, ++iPlayer, ++start, winners, officialWinners);
+			}
+		}
+		return officialWinners;
+	}
 	
 	//Sorts for a four of a kind hand
 	private Card[] sortFourKind(Card[] uCards) {
@@ -1918,7 +1927,7 @@ public class Dealer  {//open the dealer class
 		return uCards;
 	}
 	
-	
+	// Prints all the highest straight flush hands
 	public void getStraightFlushWinners(Player[] winners, String hand) {
 		int i = 0;
 		while(i != playerCount && winners[i] != null) {

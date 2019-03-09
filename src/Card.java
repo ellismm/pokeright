@@ -3,6 +3,7 @@ import java.io.IOException;
 
 public class Card {
 	
+	// Variable Declaration
 	private String faceName, suit;
 	private int faceValue;
 	private BufferedImage cardImage;
@@ -14,7 +15,6 @@ public class Card {
 	 * @param faceValue = 2,3,4....,14
 	 * @param card = a bufferdImage that represents the card
 	 */
-	
 	public Card (String suit, String faceName, int faceValue, BufferedImage card) throws IOException {
 		
 		this.suit = suit;
@@ -25,10 +25,9 @@ public class Card {
 	}
 	
 	/**
-	 * This return a string representation of a card Object
+	 * This returns a string representation of a card Object
 	 * 
 	 */
-	
 	public String toString() {
 		
 		return faceName + " of " + suit;
@@ -49,9 +48,8 @@ public class Card {
 	}
 	
 	/**
-	 * This return the faceValue of the Card Object
+	 * This returns the faceValue of the Card Object
 	 */
-	
 	public int getFaceValue() {
 		return faceValue;
 	}
